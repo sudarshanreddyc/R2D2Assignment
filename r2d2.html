@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<style type="text/css">
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color :blue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+
+
+		#zoom:hover{
+			transform: scale(1.1);
+		}
+		.bg1{
+			background: linear-gradient(to right, #FF7700, #00FF22);
+			height: 100%;
+		}
+		.bg2{
+			background: linear-gradient(to right, blue, yellow);
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+
+
+<div style="background: linear-gradient(to right,#470041, #009E5F); width: 100%;position: fixed;">
+	<table>
+	<tr>
+		<th><div style="margin-left: 100px;"><img src="r2d2img.png"></div></th>
+		<th><div style="margin-left: 20px;color: white;"><a href="#" style="text-decoration: none; color: white;">DISCOVER</a></div></th>
+		<th><div style="margin-left: 20px;color: white;"><a href="#" style="text-decoration: none; color: white;">MOVIES</a></div></th>
+		<th><div style="margin-left: 20px;color: white;"><a href="#" style="text-decoration: none; color: white;">TVSHOWS</a></div></th>
+		<th><div style="margin-left: 20px;color: white;"><a href="#" style="text-decoration: none; color: white;">PEOPLE</a></div></th>
+		<th><div style="margin-left: 250px;color: white;"><a href="#" style="text-decoration: none; color: white;">LOGIN</a></div></th>
+		<th><div style="margin-left: 20px;color: white;"><a href="#" style="text-decoration: none; color: white;">SIGNUP</a></div></th>
+	</tr>
+</table>
+</div>
+<div class="autocomplete" style="margin-top: 10px; width: 90%;">
+	<input type="text" name="myCountry" id="myInput" placeholder="Search for movies, tv shows, person..." style="width: 90%; height: 40px;font-style: italic;margin-top: 70px;">
+	<input type="submit" name="">
+
+</div>
+
+
+
+<!-- <form autocomplete="off" action="/action_page.php">
+  <div class="autocomplete" style="width:90%;">
+    <input id="myInput" type="text" name="myCountry" placeholder="MOVIE">
+  </div>
+  <input type="submit">
+</form> -->
+
+
+</div>
+
+<div>
+	<table width="100%">
+		<tr>
+			<th style="height: 100px; background-color: #223449;color: white; text-align: center;" class="bg1"><a href="#" style="color: white; text-decoration: none;">Discussions</a></th>
+			<th style="height: 100px; background-color: #2D623F; color: white; text-align: center;" class="bg2"><a href="#" style="color: white; text-decoration: none;margin-left: -10px">That's a wrap</a></th>
+		</tr>
+	</table>
+</div>
+<h1 style="margin: 10px;">
+	Trending
+</h1>
+
+<table width="100%" style="margin-top: 20px;">
+	<tr>
+		<th width="25%"><a href="#"><img src="r2d2img1.jpg" style="width: 250px; height: 150px; box-shadow: 5px 5px orange;" id="zoom"></a></th>
+		<th width="25%"><a href="#"><img src="r2d2img2.jpg" style="width: 250px; height: 150px;" id="zoom"></a></th>
+		<th width="25%"><a href="#"><img src="r2d2img3.jpg" style="width: 250px; height: 150px;" id="zoom"></a></th>
+		<th width="25%"><a href="#"><img src="r2d2img4.jpg" style="width: 250px; height: 150px;" id="zoom"></a></th>
+		
+	</tr>
+</table>
+<h1 style="margin: 10px;">Featured</h1>
+
+<table width="100%" style="margin-top: 20px;">
+	<tr>
+		<th width="25%"><a href="#"><img src="r2d2img5.jpg" style="width: 250px; height: 150px;" id="zoom"></a></th>
+		<th width="25%"><a href="#"><img src="r2d2img6.jpg" style="width: 250px; height: 150px;" id="zoom"></a></th>
+		<th width="25%"><a href="#"><img src="r2d2img7.jpg" style="width: 250px; height: 150px;" id="zoom"></a></th>
+		<th width="25%"><a href="#"><img src="r2d2img8.jpg" style="width: 250px; height: 150px;" id="zoom"></a></th>
+		
+	</tr>
+</table>
+
+
+
+<script>
+function autocomplete(inp, arr) {
+  var currentFocus;
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+        a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+           this.parentNode.appendChild(a);
+      for (i = 0; i < arr.length; i++) {
+  
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+  
+          b = document.createElement("DIV");
+        
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+      
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+     
+          b.addEventListener("click", function(e) {
+       
+              inp.value = this.getElementsByTagName("input")[0].value;
+        
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+    inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        currentFocus++;
+        
+        addActive(x);
+      } else if (e.keyCode == 38) { 
+        currentFocus--;
+        
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        
+        e.preventDefault();
+        if (currentFocus > -1) {
+          
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    
+    if (!x) return false;
+    
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+  
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+    document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+
+autocomplete(document.getElementById("myInput"), countries);
+</script>
+
+<footer>
+<div style="background: linear-gradient(to right,#470041, #009E5F); width: 100%; margin-top: 100px;">
+	<table>
+	<tr>
+		<th width="16.6%" rowspan="4"><div style="margin-left: 100px"><img src="r2d2img.png"></div></th>
+		<th width="16.6%"><div style="color: white;">THE BASICS</div></th>
+		<th width="16.6%"><div style="color: white;">GET INVOLVED</div></th>
+		<th width="16.6%"><div style="color: white;">COMMUNITY</div></th>
+		<th width="16.6%"><div style="color: white;">LEGAL</div></th>
+		<th width="16.6%"><div style="color: white;">TERMS AND CONDITIONS</div></th>
+	</tr>
+	<tr>
+		<td width="16.6%"><div style="color: white;">About TMDB</div></td>
+		<td width="16.6%"><div style="color: white;">Contribution Bible</div></td>
+		<td width="16.6%"><div style="color: white;">Guide Lines</div></td>
+		<td width="16.6%"><div style="color: white;">Terms Of Use</div></td>
+		<td width="16.6%"><div style="color: white;">Read Terms</div></td>
+	</tr>
+	<tr>
+		<td width="16.6%"><div style="color: white;">Contact US</div></td>
+		<td width="16.6%"><div style="color: white;">Third Party Applications</div></td>
+		<td width="16.6%"><div style="color: white;">Leaderboard</div></td>
+		<td width="16.6%"><div style="color: white;">Privacy Policy</div></td>
+		<td width="16.6%"><div style="color: white;">Read Conditions</div></td>
+	</tr>
+	<tr>
+		<td width="16.6%"><div style="color: white;">Support Forums</div></td>
+		<td width="16.6%"><div style="color: white;">Add New Movie</div></td>
+		<td width="16.6%"><div style="color: white;">Forums</div></td>
+	</tr>
+</table>
+</div>
+</footer>
+
+</body>
+</html>
